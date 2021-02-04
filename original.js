@@ -152,4 +152,6 @@ const pageViewLi = $('.dateList-main .icon-eye').text();
 const pageViewNumber = parseInt(pageViewLi);
 if (pageViewNumber >= 1000) {
   $('.dateList-main .icon-eye').css('color', '#ff1744');
+} else {
+  $('.dateList-main .icon-eye').css('color', '#424242');
 }
