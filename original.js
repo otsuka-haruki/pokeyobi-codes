@@ -24,35 +24,35 @@ $(window).scroll(function() {
 });
 
 // loading animation (only on tablet and desktop)
-if (!navigator.userAgent.match(/(iPhone|iPod|Android)/)) {
-  setTimeout(() => {
-    const loadingContainer = document.getElementById('loading-container');
-    loadingContainer.classList.add('loaded');
-  }, 3000);
-
-  const loadingHTML = document.createElement('div');
-  loadingHTML.setAttribute('id', 'loading-container');
-  loadingHTML.innerHTML = `
-  <div class="half-circle-spinner">
-  <div class="circle circle-1"></div>
-  <div class="circle circle-2"></div>
-  </div>
-  <p>ようこそ！</p>
-  `;
-
-  const body = document.getElementsByTagName('body');
-  body[0].append(loadingHTML);
-
-  const loadingContainer = document.getElementById('loading-container');
-  loadingContainer.addEventListener('click', () => {
-    loadingContainer.classList.add('loaded');
-  })
-
-  window.onload = function() {
-    const loadingContainer = document.getElementById('loading-container');
-    loadingContainer.classList.add('loaded');
-  };
-}
+// if (!navigator.userAgent.match(/(iPhone|iPod|Android)/)) {
+//   setTimeout(() => {
+//     const loadingContainer = document.getElementById('loading-container');
+//     loadingContainer.classList.add('loaded');
+//   }, 3000);
+//
+//   const loadingHTML = document.createElement('div');
+//   loadingHTML.setAttribute('id', 'loading-container');
+//   loadingHTML.innerHTML = `
+//   <div class="half-circle-spinner">
+//   <div class="circle circle-1"></div>
+//   <div class="circle circle-2"></div>
+//   </div>
+//   <p>ようこそ！</p>
+//   `;
+//
+//   const body = document.getElementsByTagName('body');
+//   body[0].append(loadingHTML);
+//
+//   const loadingContainer = document.getElementById('loading-container');
+//   loadingContainer.addEventListener('click', () => {
+//     loadingContainer.classList.add('loaded');
+//   })
+//
+//   window.onload = function() {
+//     const loadingContainer = document.getElementById('loading-container');
+//     loadingContainer.classList.add('loaded');
+//   };
+// }
 
 // author card
 const authorCard = document.getElementsByClassName('saboxplugin-wrap')[0];
@@ -139,7 +139,6 @@ document.body.append(progressCircle);
       return false;
     });
   });
-
 })(jQuery);
 
 
@@ -153,5 +152,5 @@ const pageViewNumber = parseInt(pageViewLi);
 if (pageViewNumber >= 1000) {
   $('.dateList-main .icon-eye').css('color', '#ff1744');
 } else {
-  $('.dateList-main .icon-eye').css('color', '#424242');
+  $('.dateList-main .icon-eye').css('opacity', '0');
 }
