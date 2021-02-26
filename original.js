@@ -1,12 +1,16 @@
 'use strict';
 
 // marker
+
+const windowHeight = window.innerHeight;
+const targetHeight = windowHeight * 0.55;
+
 $(window).scroll(function() {
   $('.marker-halfGreen').each(function() {
     const position = $(this).offset().top;
     const scroll = $(window).scrollTop();
     const windowHeight = $(window).height();
-    if (scroll > position - windowHeight + 60) {
+    if (scroll > position - windowHeight + +targetHeight) {
       $(this).addClass('is-active');
     }
   });
@@ -17,42 +21,11 @@ $(window).scroll(function() {
     const position = $(this).offset().top;
     const scroll = $(window).scrollTop();
     const windowHeight = $(window).height();
-    if (scroll > position - windowHeight + 60) {
+    if (scroll > position - windowHeight + +targetHeight) {
       $(this).addClass('is-active');
     }
   });
 });
-
-// loading animation (only on tablet and desktop)
-// if (!navigator.userAgent.match(/(iPhone|iPod|Android)/)) {
-//   setTimeout(() => {
-//     const loadingContainer = document.getElementById('loading-container');
-//     loadingContainer.classList.add('loaded');
-//   }, 3000);
-//
-//   const loadingHTML = document.createElement('div');
-//   loadingHTML.setAttribute('id', 'loading-container');
-//   loadingHTML.innerHTML = `
-//   <div class="half-circle-spinner">
-//   <div class="circle circle-1"></div>
-//   <div class="circle circle-2"></div>
-//   </div>
-//   <p>ようこそ！</p>
-//   `;
-//
-//   const body = document.getElementsByTagName('body');
-//   body[0].append(loadingHTML);
-//
-//   const loadingContainer = document.getElementById('loading-container');
-//   loadingContainer.addEventListener('click', () => {
-//     loadingContainer.classList.add('loaded');
-//   })
-//
-//   window.onload = function() {
-//     const loadingContainer = document.getElementById('loading-container');
-//     loadingContainer.classList.add('loaded');
-//   };
-// }
 
 // author card
 const authorCard = document.getElementsByClassName('saboxplugin-wrap')[0];
@@ -153,4 +126,32 @@ if (pageViewNumber >= 1000) {
   $('.dateList-main .icon-eye').css('color', '#ff1744');
 } else {
   $('.dateList-main .icon-eye').css('opacity', '0');
+}
+
+// expand images to 100vw
+const postContent = document.getElementsByClassName('postContents')[0];
+const targetImages = postContent.querySelectorAll('img');
+for (const image of targetImages) {
+  if (image.classList.contains('size-large')) {
+    image.classList.remove('size-large');
+    image.classList.add('size-full');
+  }
+}
+
+// contact form paperplane icon
+const pathName = location.pathname;
+if (pathName == '/contact') {
+  const formButton = document.getElementsByClassName('btn__link-primary')[0];
+  const paperPlaneIcon = document.createElement('i');
+  paperPlaneIcon.classList.add('fas', 'fa-paper-plane');
+  formButton.append(paperPlaneIcon);
+  formButton.addEventListener('mouseenter', () => {
+    paperPlaneIcon.classList.add('paper-plane-rotate');
+  });
+  formButton.addEventListener('mouseleave', () => {
+    paperPlaneIcon.classList.remove('paper-plane-rotate');
+  });
+  formButton.addEventListener('click', () => {
+    paperPlaneIcon.classList.add('paper-plane-fly');
+  });
 }
