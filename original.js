@@ -166,7 +166,8 @@ if (pathName == '/contact') {
     const mailAddress = mailAddressInput.value;
     if (mailAddress.includes('@rediffmail')) {
       event.preventDefault();
-      alert('迷惑メール防止の観点から、このメールアドレスからはメールを送信できません。');
+      alert('このメールアドレスからはメールを送信できません。');
+      location.reload();
     }
   });
 }
