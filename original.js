@@ -1,7 +1,6 @@
 'use strict';
 
 // marker
-
 const windowHeight = window.innerHeight;
 const targetHeight = windowHeight * 0.55;
 
@@ -130,11 +129,13 @@ if (pageViewNumber >= 1000) {
 
 // expand images to 100vw
 const postContent = document.getElementsByClassName('postContents')[0];
-const targetImages = postContent.querySelectorAll('img');
-for (const image of targetImages) {
-  if (image.classList.contains('size-large')) {
-    image.classList.remove('size-large');
-    image.classList.add('size-full');
+if (postContent != undefined) {
+  const targetImages = postContent.querySelectorAll('img');
+  for (const image of targetImages) {
+    if (image.classList.contains('size-large')) {
+      image.classList.remove('size-large');
+      image.classList.add('size-full');
+    }
   }
 }
 
@@ -153,5 +154,19 @@ if (pathName == '/contact') {
   });
   formButton.addEventListener('click', () => {
     paperPlaneIcon.classList.add('paper-plane-fly');
+  });
+}
+
+// contact form prevent sending mail from certain addresses
+if (pathName == '/contact') {
+  const textInputs = document.getElementsByClassName('contactTable')[0].querySelector('tbody').querySelectorAll('tr');
+  const mailAddressInput = textInputs[1].querySelector('td input');
+  const formButton = document.getElementsByClassName('btn__link-primary')[0];
+  formButton.addEventListener('click', (event) => {
+    const mailAddress = mailAddressInput.value;
+    if (mailAddress.includes('@rediffmail')) {
+      event.preventDefault();
+      alert('迷惑メール防止の観点から、このメールアドレスからはメールを送信できません。');
+    }
   });
 }
