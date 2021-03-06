@@ -66,13 +66,16 @@ if (nvUA.indexOf('Safari') != -1) {
 }
 
 // progress-circle
+{/*  */}
+
 const progressCircle = document.createElement('div');
 progressCircle.classList.add('progress-wrap');
 progressCircle.innerHTML = `
 		<svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
 			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
-      <i class="fas fa-arrow-up" id="progress-wrap-arrow"></i>
 		</svg>
+    <p id="progress-wrap-percentage"></p>
+    <i class="fas fa-arrow-up fade-out" id="progress-wrap-arrow"></i>
 `;
 document.body.append(progressCircle);
 (function($) {
@@ -85,10 +88,18 @@ document.body.append(progressCircle);
     progressPath.style.strokeDashoffset = pathLength;
     progressPath.getBoundingClientRect();
     progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+    const percentagePTag = progressCircle.querySelector('#progress-wrap-percentage');
     const updateProgress = function() {
       const scroll = $(window).scrollTop();
       const height = $(document).height() - $(window).height();
       const progress = pathLength - (scroll * pathLength / height);
+      const percentageNumber = parseInt(scroll * 100 / height);
+      percentagePTag.textContent = `${percentageNumber}%`;
+      if (percentageNumber < 10) {
+        percentagePTag.style.right = '12px';
+      } else {
+        percentagePTag.style.right = '9px';
+      }
       progressPath.style.strokeDashoffset = progress;
     }
     $(window).scroll(updateProgress);
@@ -102,6 +113,22 @@ document.body.append(progressCircle);
         jQuery('.progress-wrap').removeClass('active-progress');
       }
     });
+    // toggle arrow / percentage
+    const toggleArrowAndPercentageTesting = function() {
+      const percentagePTag = progressCircle.querySelector('#progress-wrap-percentage');
+      if (progressCircle.querySelector('i').classList.contains('fade-in')) {
+        progressCircle.querySelector('i').classList.remove('fade-in');
+        progressCircle.querySelector('i').classList.add('fade-out');
+        percentagePTag.classList.remove('fade-out');
+        percentagePTag.classList.add('fade-in');
+      } else {
+        progressCircle.querySelector('i').classList.remove('fade-out');
+        progressCircle.querySelector('i').classList.add('fade-in');
+        percentagePTag.classList.remove('fade-in');
+        percentagePTag.classList.add('fade-out');
+      }
+    }
+    const setIntervalOfTogglingArrowAndPercentage = setInterval(toggleArrowAndPercentageTesting, 7000);
     // back to top
     jQuery('.progress-wrap').on('click', function(event) {
       event.preventDefault();
