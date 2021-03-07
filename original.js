@@ -66,8 +66,6 @@ if (nvUA.indexOf('Safari') != -1) {
 }
 
 // progress-circle
-{/*  */}
-
 const progressCircle = document.createElement('div');
 progressCircle.classList.add('progress-wrap');
 progressCircle.innerHTML = `
@@ -128,7 +126,7 @@ document.body.append(progressCircle);
         percentagePTag.classList.add('fade-out');
       }
     }
-    const setIntervalOfTogglingArrowAndPercentage = setInterval(toggleArrowAndPercentageTesting, 7000);
+    setInterval(toggleArrowAndPercentageTesting, 5000);
     // back to top
     jQuery('.progress-wrap').on('click', function(event) {
       event.preventDefault();
