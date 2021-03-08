@@ -160,6 +160,8 @@ if (postContent != undefined) {
     if (image.classList.contains('size-large')) {
       image.classList.remove('size-large');
       image.classList.add('size-full');
+    } else if(image.parentElement.tagName == 'P') {
+      image.classList.add('size-full');
     }
   }
 }
