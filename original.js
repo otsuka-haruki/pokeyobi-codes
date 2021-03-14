@@ -47,9 +47,32 @@
 // user browser version note
 (function () {
   const nvUA = navigator.userAgent;
-  if (nvUA.indexOf("Safari") != -1) {
+  if (nvUA.indexOf("msie") != -1 || nvUA.indexOf("trident") != -1) {
+    // user browser is IE
+    // IE does not support Webp
+    const toastVersionNote = document.createElement("div");
+    toastVersionNote.innerHTML = `
+      <p>Internet Explorerをご使用の場合、一部の画像が表示されないことがあります</p>
+      `;
+    setTimeout(() => {
+      toastVersionNote.classList.add(
+        "toast",
+        "animate__fadeInUp",
+        "animate__animated"
+      );
+      document.body.append(toastVersionNote);
+    }, 1000);
+    setTimeout(() => {
+      toastVersionNote.classList.add(
+        "animate__slow",
+        "animate__animated",
+        "animate__fadeOut"
+      );
+    }, 5000);
+  }
+  else if (nvUA.indexOf("Safari") != -1) {
     if (nvUA.indexOf("Chrome") == -1) {
-      // not Chrome
+      // user browser is Safari
       const cutSt = nvUA.indexOf("Version");
       const cutEd = nvUA.indexOf(" ", cutSt);
       const bwVer = nvUA.substring(cutSt + 8, cutEd);
@@ -114,7 +137,7 @@ document.body.append(progressCircle);
       if (percentageNumber < 10) {
         percentagePTag.style.right = "12px";
       } else {
-        percentagePTag.style.right = "9px";
+        percentagePTag.style.right = "8px";
       }
       progressPath.style.strokeDashoffset = progress;
     };
@@ -233,3 +256,49 @@ if (pathName == "/contact") {
   formContentTitle.innerHTML =
     "お問い合わせ・ご意見の内容<span class='required'>必須</span>";
 }
+
+// word balloon
+(function () {
+  // add border to images
+  const wordBalloonLeftContainer = document.getElementsByClassName("w_b_ava_L");
+  const wordBalloonRightContainer = document.getElementsByClassName("w_b_ava_R");
+  for (const element of wordBalloonLeftContainer) {
+    const target = element.querySelector("img").parentElement;
+    target.classList.add("w_b_border_L");
+  }
+  for (const element of wordBalloonRightContainer) {
+    const target = element.querySelector("img").parentElement;
+    target.classList.add("w_b_border_R");
+  }
+})();
+
+// Adobe fonts TsukuARdGothic
+
+// (function (d) {
+//   var config = {
+//       kitId: "vgv4dfw",
+//       scriptTimeout: 3000,
+//       async: true,
+//     },
+//     h = d.documentElement,
+//     t = setTimeout(function () {
+//       h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+//     }, config.scriptTimeout),
+//     tk = d.createElement("script"),
+//     f = false,
+//     s = d.getElementsByTagName("script")[0],
+//     a;
+//   h.className += " wf-loading";
+//   tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+//   tk.async = true;
+//   tk.onload = tk.onreadystatechange = function () {
+//     a = this.readyState;
+//     if (f || (a && a != "complete" && a != "loaded")) return;
+//     f = true;
+//     clearTimeout(t);
+//     try {
+//       Typekit.load(config);
+//     } catch (e) {}
+//   };
+//   s.parentNode.insertBefore(tk, s);
+// })(document);
