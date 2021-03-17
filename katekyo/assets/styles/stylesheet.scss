@@ -1,0 +1,12 @@
+$black: #1d1d1f;
+
+body {
+    color: $black;
+    font-family: 'Shippori Mincho B1', serif;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

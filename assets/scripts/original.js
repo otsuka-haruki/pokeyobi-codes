@@ -217,45 +217,57 @@ document.body.append(progressCircle);
   }
 })();
 
-// contact form paperplane icon
-const pathName = location.pathname;
-if (pathName == "/contact") {
-  const formButton = document.getElementsByClassName("btn__link-primary")[0];
-  const paperPlaneIcon = document.createElement("i");
-  paperPlaneIcon.classList.add("fas", "fa-paper-plane");
-  formButton.append(paperPlaneIcon);
-  formButton.addEventListener("mouseenter", () => {
-    paperPlaneIcon.classList.add("paper-plane-rotate");
-  });
-  formButton.addEventListener("mouseleave", () => {
-    paperPlaneIcon.classList.remove("paper-plane-rotate");
-  });
-  formButton.addEventListener("click", () => {
-    paperPlaneIcon.classList.add("paper-plane-fly");
-  });
+// contact form page
+(function () {
+  const pathName = location.pathname;
+  if (pathName == "/contact" || pathName == "/advertisement") {
+    const formButton = document.getElementsByClassName("btn__link-primary")[0];
+    const paperPlaneIcon = document.createElement("i");
+    paperPlaneIcon.classList.add("fas", "fa-paper-plane");
+    formButton.append(paperPlaneIcon);
+    formButton.addEventListener("mouseenter", () => {
+      paperPlaneIcon.classList.add("paper-plane-rotate");
+    });
+    formButton.addEventListener("mouseleave", () => {
+      paperPlaneIcon.classList.remove("paper-plane-rotate");
+    });
+    formButton.addEventListener("click", () => {
+      paperPlaneIcon.classList.add("paper-plane-fly");
+    });
 
-  // contact form prevent sending mail from certain addresses
-  const textInputs = document
-    .getElementsByClassName("contactTable")[0]
-    .querySelector("tbody")
-    .querySelectorAll("tr");
-  const mailAddressInput = textInputs[1].querySelector("td input");
-  formButton.addEventListener("click", (event) => {
-    const mailAddress = mailAddressInput.value;
-    if (mailAddress.includes("@rediffmail")) {
-      event.preventDefault();
-      alert("このメールアドレスからはメールを送信できません。");
-      location.reload();
+    // contact form prevent sending mail from certain addresses
+    const textInputs = document
+      .getElementsByClassName("contactTable")[0]
+      .querySelector("tbody")
+      .querySelectorAll("tr");
+    const mailAddressInput = textInputs[1].querySelector("td input");
+    formButton.addEventListener("click", (event) => {
+      const mailAddress = mailAddressInput.value;
+      if (mailAddress.includes("@rediffmail")) {
+        event.preventDefault();
+        alert("このメールアドレスからはメールを送信できません。");
+        location.reload();
+      }
+    });
+
+    // change texts
+    if (pathName == "/contact") {
+      const pageTitle = document.getElementsByClassName("heading-primary")[0];
+      const formContentTitle = textInputs[3].querySelector("th");
+      pageTitle.textContent = "お問い合わせ・ご意見・メッセージ";
+      formContentTitle.innerHTML =
+        "お問い合わせ・ご意見の内容<span class='required'>必須</span>";
+    } else if (pathName == "/advertisement") {
+      const formName = textInputs[0].querySelector('th');
+      formName.innerHTML =
+        "企業様名・担当者様のお名前<span class='required'>必須</span>";
+      const formContentTitle = textInputs[3].querySelector("th");
+      formContentTitle.innerHTML =
+        "ご依頼の広告の詳細<span class='required'>必須</span>";
     }
-  });
+  }
+})();
 
-  // change texts
-  const pageTitle = document.getElementsByClassName("heading-primary")[0];
-  const formContentTitle = textInputs[3].querySelector("th");
-  pageTitle.textContent = "お問い合わせ・ご意見・メッセージ";
-  formContentTitle.innerHTML =
-    "お問い合わせ・ご意見の内容<span class='required'>必須</span>";
-}
 
 // word balloon
 (function () {
@@ -272,33 +284,3 @@ if (pathName == "/contact") {
   }
 })();
 
-// Adobe fonts TsukuARdGothic
-
-// (function (d) {
-//   var config = {
-//       kitId: "vgv4dfw",
-//       scriptTimeout: 3000,
-//       async: true,
-//     },
-//     h = d.documentElement,
-//     t = setTimeout(function () {
-//       h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
-//     }, config.scriptTimeout),
-//     tk = d.createElement("script"),
-//     f = false,
-//     s = d.getElementsByTagName("script")[0],
-//     a;
-//   h.className += " wf-loading";
-//   tk.src = "https://use.typekit.net/" + config.kitId + ".js";
-//   tk.async = true;
-//   tk.onload = tk.onreadystatechange = function () {
-//     a = this.readyState;
-//     if (f || (a && a != "complete" && a != "loaded")) return;
-//     f = true;
-//     clearTimeout(t);
-//     try {
-//       Typekit.load(config);
-//     } catch (e) {}
-//   };
-//   s.parentNode.insertBefore(tk, s);
-// })(document);

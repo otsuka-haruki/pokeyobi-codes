@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>家庭教師｜ポケット予備校</title>
+
+    <!-- <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon.png"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles/stylesheet.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/scripts/index.js" defer type="module"></script>
+</head>
+
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" style="font-size: 24px;">ポケット予備校</a>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent flex-center">
+                <li class="tab"><a href="https://pokeyobi.jp/katekyo/index.html" class="active">家庭教師</a></li>
+                <li class="tab"><a href="https://pokeyobi.jp/tensaku/index.html">添削</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row teal lighten-2" id="test1-container">
+        <div class="col s12">
+            <div class="card lighten-1 red">
+                <div class="card-content">
+                    <span class="card-title">田中太郎</span>
+                    <p>こんにちは、東大法学部3年の田中です。得意教科は数学と英語です。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="card lighten-1 green">
+                <div class="card-content">
+                    <span class="card-title">山田花子</span>
+                    <p>こんにちは、東大理学部3年の山田です。得意教科は物理と化学です。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="card lighten-1 red">
+                <div class="card-content">
+                    <span class="card-title">佐藤すすむ</span>
+                    <p>こんにちは、東大経済学部3年の佐藤です。得意教科は数学と地理です。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row amber lighten-2">
+        <form action="accept-form.php">
+            <div class="row">
+                <div class="col s12 input-field">
+                    <input id="student-name" type="text" class="validate">
+                    <label for="student-name">お名前</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input id="student-furigana" type="text" class="validate">
+                    <label for="student-furigana">フリガナ</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input id="student-mail-address" type="text" class="validate">
+                    <label for="student-mail-address">メールアドレス</label>
+                </div>
+                <div class="col s12 input-field">
+                    <select>
+                        <option value="" selected>学年を選択してください</option>
+                        <option value="1">小学生</option>
+                        <option value="2">中学生</option>
+                        <option value="3">高校生</option>
+                    </select>
+                    <label>学年</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
