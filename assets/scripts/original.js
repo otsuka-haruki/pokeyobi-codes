@@ -260,7 +260,7 @@ document.body.append(progressCircle);
     } else if (pathName == "/advertisement") {
       const formName = textInputs[0].querySelector('th');
       formName.innerHTML =
-        "企業様名・担当者様のお名前<span class='required'>必須</span>";
+        "企業様・担当者様のお名前<span class='required'>必須</span>";
       const formContentTitle = textInputs[3].querySelector("th");
       formContentTitle.innerHTML =
         "ご依頼の広告の詳細<span class='required'>必須</span>";

@@ -24,14 +24,14 @@
 </head>
 
 <body>
-    <nav class="nav-extended">
+    <nav class="nav-extended red accent-3">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center" style="font-size: 24px;">ポケット予備校</a>
         </div>
         <div class="nav-content">
             <ul class="tabs tabs-transparent flex-center">
                 <li class="tab"><a href="https://pokeyobi.jp/katekyo/index.html" class="active">家庭教師</a></li>
-                <li class="tab"><a href="https://pokeyobi.jp/tensaku/index.html">添削</a></li>
+                <li class="tab"><a href="../tensaku/index.html">添削</a></li>
             </ul>
         </div>
     </nav>
@@ -62,7 +62,8 @@
         </div>
     </div>
 
-    <div class="row amber lighten-2">
+    <div class="row container">
+        <h2>条件でお問い合わせ</h2>
         <form action="accept-form.php">
             <div class="row">
                 <div class="col s12 input-field">
@@ -74,17 +75,109 @@
                     <label for="student-furigana">フリガナ</label>
                 </div>
                 <div class="col s12 input-field">
+                    <p>生徒様の性別</p>
+                    <div class="flex-on-tablet-and-pc">
+                        <p>
+                            <label>
+                                <input name="student-sex" type="radio" />
+                                <span>男性</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="student-sex" type="radio" />
+                                <span>女性</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <div class="col s12 input-field">
+                    <select>
+                        <option value="" selected disabled>学年を選択してください</option>
+                        <option value="1">小学生</option>
+                        <option value="2">中学生</option>
+                        <option value="3">高校生</option>
+                        <option value="4">浪人生</option>
+                    </select>
+                    <label>学年</label>
+                </div>
+                <div class="col s12 input-field">
                     <input id="student-mail-address" type="text" class="validate">
                     <label for="student-mail-address">メールアドレス</label>
                 </div>
                 <div class="col s12 input-field">
+                    <input id="student-phone-number" type="text" class="validate">
+                    <label for="student-phone-number">電話番号</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input id="student-postal-code" type="text" class="validate">
+                    <label for="student-postal-code">郵便番号</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input id="student-address" type="text" class="validate">
+                    <label for="student-address">住所</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input id="student-nearest-station" type="text" class="validate">
+                    <label for="student-nearest-station">最寄り駅</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input id="student-access" type="text" class="validate">
+                    <label for="student-access">最寄駅からの移動手段と時間</label>
+                </div>
+                <div class="col s12 input-field">
                     <select>
-                        <option value="" selected>学年を選択してください</option>
-                        <option value="1">小学生</option>
-                        <option value="2">中学生</option>
-                        <option value="3">高校生</option>
+                        <option value="" selected disabled>指導希望回数</option>
+                        <option value="1">週１回</option>
+                        <option value="2">週２回</option>
+                        <option value="3">週３回</option>
                     </select>
-                    <label>学年</label>
+                    <label>指導希望回数</label>
+                </div>
+                <div class="col s12 input-field">
+                    <select>
+                        <option value="" selected disabled>1回あたりの希望指導時間</option>
+                        <option value="1">90分</option>
+                        <option value="2">120分</option>
+                        <option value="3">150分</option>
+                    </select>
+                    <label>1回あたりの希望指導時間</label>
+                </div>
+                <div class="col s12 input-field">
+                    <p>講師の性別の希望</p>
+                    <div class="flex-on-tablet-and-pc">
+                        <p>
+                            <label>
+                                <input name="teacher-sex" type="radio" />
+                                <span>男性</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="teacher-sex" type="radio" />
+                                <span>女性</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="teacher-sex" type="radio" />
+                                <span>特になし</span>
+                            </label>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col s12 input-field">
+                    <textarea id="student-subjects" type="text" class="materialize-textarea"></textarea>
+                    <label for="student-subjects">指導希望科目</label>
+                </div>
+                <div class="col s12 input-field">
+                    <textarea id="student-date" type="text" class="materialize-textarea"></textarea>
+                    <label for="student-date">指導希望曜日・時間帯</label>
+                </div>
+                <div class="col s12 input-field">
+                    <textarea id="student-situation" type="text" class="materialize-textarea"></textarea>
+                    <label for="student-situation">講師に伝えたい状況やご要望</label>
                 </div>
             </div>
         </form>

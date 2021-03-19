@@ -1,12 +1,18 @@
 $black: #1d1d1f;
 
 body {
-    color: $black;
-    font-family: 'Shippori Mincho B1', serif;
+  color: $black;
+  font-family: "Shippori Mincho B1", serif;
+}
+
+@media screen and (min-width: 600px) {
+  .flex-on-tablet-and-pc {
+    display: flex;
+  }
 }
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
