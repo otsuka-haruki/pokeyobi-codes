@@ -28,22 +28,6 @@
   });
 })();
 
-// author card
-(function () {
-  const authorCard = document.getElementsByClassName("saboxplugin-wrap")[0];
-  if (authorCard == undefined) {
-    console.log("編集者カードがない人の記事");
-  } else {
-    const authorCardTitle = document.createElement("h4");
-    authorCardTitle.setAttribute("id", "author-card-title");
-    authorCardTitle.textContent = "この記事を書いた人";
-    authorCard.querySelector("div").before(authorCardTitle);
-
-    const articleOutline = document.getElementsByClassName("outline")[0];
-    articleOutline.before(authorCard);
-  }
-})();
-
 // user browser version note
 (function () {
   const nvUA = navigator.userAgent;
@@ -77,7 +61,7 @@
       const cutEd = nvUA.indexOf(" ", cutSt);
       const bwVer = nvUA.substring(cutSt + 8, cutEd);
       if (parseInt(bwVer) < 14) {
-        // browser version too old to show Webp
+        // browser version is too old to show Webp
         const toastVersionNote = document.createElement("div");
         toastVersionNote.innerHTML = `
       <p>お使いのSafariのバージョンが古いと、一部の画像が表示されないことがあります</p>
@@ -201,6 +185,91 @@ document.body.append(progressCircle);
   }
 })();
 
+// appending outline
+(function () {
+  const postContents = document.getElementsByClassName("postContents")[0];
+  const widgetSticky = document.getElementsByClassName("widgetSticky")[0];
+  const stickyOutlineContainer = widgetSticky.querySelector("aside");
+  if (postContents == undefined) {
+    stickyOutlineContainer.remove();
+    return;
+  }
+  const headingTwoTags = postContents.querySelectorAll("h2");
+  const outline = document.createElement("div");
+  outline.classList.add("post-outline");
+  const outlineUl = document.createElement("ul");
+  for (let i = 0; i < headingTwoTags.length; i++) {
+    headingTwoTags[i].setAttribute('id', `outline-${i}`);
+    const outlineList = document.createElement('li');
+    const outlineAtag = document.createElement("a");
+    outlineAtag.setAttribute("href", `#outline-${i}`);
+    outlineAtag.textContent = headingTwoTags[i].textContent;
+    outlineList.append(outlineAtag);
+    outlineUl.append(outlineList);
+  }
+  outline.append(outlineUl);
+
+  const windowPixels = window.innerWidth;
+  if (+windowPixels < 991) {
+    // not pc
+    outline.classList.add("post-outline--smartphone");
+    const outlineTitle = document.createElement('h3');
+    outlineTitle.textContent = '目次';
+    outlineTitle.classList.add('post-outline--smartphone__title');
+    outline.prepend(outlineTitle);
+    stickyOutlineContainer.remove();
+    const previousElementSiblingOfFirstHeadingTwo = headingTwoTags[0].previousElementSibling;
+    if (previousElementSiblingOfFirstHeadingTwo.classList.contains('adPost')) {
+      previousElementSiblingOfFirstHeadingTwo.before(outline);
+    } else {
+      previousElementSiblingOfFirstHeadingTwo.after(outline);
+    }
+  } else {
+    // pc
+    stickyOutlineContainer.append(outline);
+    outline.classList.add("post-outline--pc");
+    const headingTwoIdArray = [];
+    $(window).scroll(function () {
+      $(".postContents h2").each(function () {
+        const position = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowHeight = window.innerHeight;
+        const offsetFromTopInPixel = windowHeight * 0.2;
+        if (scroll > position - offsetFromTopInPixel) {
+          // entered
+          headingTwoIdArray.push($(this).attr('id'));
+        }
+      });
+      const length = +headingTwoIdArray.length;
+      const targetH2 = headingTwoIdArray[length - 1];
+      const outlineLists = outlineUl.querySelectorAll('li');
+      for (let i = 0; i < headingTwoTags.length; i++) {
+        if (headingTwoTags[i].id == targetH2) {
+          outlineLists[i].classList.add('outline-list-active');
+        } else {
+          outlineLists[i].classList.remove('outline-list-active');
+        }
+      }
+    });
+  }
+})();
+
+// author card
+//   (function () {
+//     const authorCard = document.getElementsByClassName("saboxplugin-wrap")[0];
+//     if (authorCard == undefined) {
+// return
+//     } else {
+//       const authorCardTitle = document.createElement("h4");
+//       authorCardTitle.setAttribute("id", "author-card-title");
+//       authorCardTitle.textContent = "この記事を書いた人";
+//       authorCard.querySelector("div").before(authorCardTitle);
+
+//       const articleOutline = document.getElementsByClassName("outline")[0];
+//       articleOutline.before(authorCard);
+//     }
+//   })();
+
 // expand images to 100vw
 (function () {
   const postContent = document.getElementsByClassName("postContents")[0];
@@ -283,4 +352,3 @@ document.body.append(progressCircle);
     target.classList.add("w_b_border_R");
   }
 })();
-
