@@ -120,8 +120,10 @@ document.body.append(progressCircle);
       percentagePTag.textContent = `${percentageNumber}%`;
       if (percentageNumber < 10) {
         percentagePTag.style.right = "12px";
-      } else {
+      } else if (percentageNumber < 100) {
         percentagePTag.style.right = "8px";
+      } else {
+        percentagePTag.style.right = "4px";
       }
       progressPath.style.strokeDashoffset = progress;
     };
@@ -186,6 +188,7 @@ document.body.append(progressCircle);
 })();
 
 // appending outline
+// TODO: fix ancker link
 (function () {
   const postContents = document.getElementsByClassName("postContents")[0];
   const widgetSticky = document.getElementsByClassName("widgetSticky")[0];
@@ -255,20 +258,33 @@ document.body.append(progressCircle);
 })();
 
 // author card
-//   (function () {
-//     const authorCard = document.getElementsByClassName("saboxplugin-wrap")[0];
-//     if (authorCard == undefined) {
-// return
-//     } else {
-//       const authorCardTitle = document.createElement("h4");
-//       authorCardTitle.setAttribute("id", "author-card-title");
-//       authorCardTitle.textContent = "この記事を書いた人";
-//       authorCard.querySelector("div").before(authorCardTitle);
+(function () {
+  const authorCard = document.getElementsByClassName("saboxplugin-wrap")[0];
+  if (authorCard == undefined) {
+    return
+  } else {
+    const authorCardTitle = document.createElement("h4");
+    authorCardTitle.setAttribute("id", "author-card-title");
+    authorCardTitle.textContent = "この記事を書いた人";
+    authorCard.querySelector("div").before(authorCardTitle);
 
-//       const articleOutline = document.getElementsByClassName("outline")[0];
-//       articleOutline.before(authorCard);
-//     }
-//   })();
+    const postOutlineSmartphone = document.getElementsByClassName("post-outline--smartphone")[0];
+    if (postOutlineSmartphone != undefined) {
+      // smartphone
+      postOutlineSmartphone.before(authorCard);
+    } else {
+      // pc
+      const postContents = document.getElementsByClassName("postContents")[0];
+      const headingTwoTags = postContents.querySelectorAll("h2");
+      const previousElementSiblingOfFirstHeadingTwo = headingTwoTags[0].previousElementSibling;
+      if (previousElementSiblingOfFirstHeadingTwo.classList.contains('adPost')) {
+        previousElementSiblingOfFirstHeadingTwo.before(authorCard);
+      } else {
+        previousElementSiblingOfFirstHeadingTwo.after(authorCard);
+      }
+    }
+  }
+})();
 
 // expand images to 100vw
 (function () {
