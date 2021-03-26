@@ -188,7 +188,6 @@ document.body.append(progressCircle);
 })();
 
 // appending outline
-// TODO: fix ancker link
 (function () {
   const postContents = document.getElementsByClassName("postContents")[0];
   const widgetSticky = document.getElementsByClassName("widgetSticky")[0];
@@ -198,6 +197,7 @@ document.body.append(progressCircle);
     return;
   }
   const headingTwoTags = postContents.querySelectorAll("h2");
+  console.log(headingTwoTags);
   const outline = document.createElement("div");
   outline.classList.add("post-outline");
   const outlineUl = document.createElement("ul");
@@ -352,7 +352,6 @@ document.body.append(progressCircle);
     }
   }
 })();
-
 
 // word balloon
 (function () {
