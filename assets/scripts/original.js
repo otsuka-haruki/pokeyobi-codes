@@ -172,16 +172,16 @@ document.body.append(progressCircle);
 
 // post icons
 (function () {
-  $(".dateList-main .icon-eye").prepend('<i class="fas fa-signal"></i>');
   $(".dateList-main .icon-update").prepend('<i class="fas fa-pen-nib"></i>');
 })();
 
-// pageview text color
+// pageview text color and plural form
 (function () {
   const pageViewLi = $(".dateList-main .icon-eye").text();
   const pageViewNumber = parseInt(pageViewLi);
   if (pageViewNumber >= 1000) {
     $(".dateList-main .icon-eye").css("color", "#ff1744");
+    $(".dateList-main .icon-eye").html(`<i class="fas fa-signal"></i>${pageViewNumber}views`);
   } else {
     $(".dateList-main .icon-eye").css("opacity", "0");
   }
@@ -197,7 +197,6 @@ document.body.append(progressCircle);
     return;
   }
   const headingTwoTags = postContents.querySelectorAll("h2");
-  console.log(headingTwoTags);
   const outline = document.createElement("div");
   outline.classList.add("post-outline");
   const outlineUl = document.createElement("ul");
