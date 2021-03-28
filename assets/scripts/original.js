@@ -213,7 +213,7 @@ document.body.append(progressCircle);
 
   const windowPixels = window.innerWidth;
   if (+windowPixels < 991) {
-    // not pc
+    // smartphone or tablet
     outline.classList.add("post-outline--smartphone");
     const outlineTitle = document.createElement('h3');
     outlineTitle.textContent = '目次';
