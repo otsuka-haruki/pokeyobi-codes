@@ -3,7 +3,7 @@
 // marker animation
 (function () {
   const windowHeight = window.innerHeight;
-  const targetHeight = windowHeight * 0.55;
+  const targetHeight = windowHeight * 0.65;
 
   $(window).scroll(function () {
     $(".marker-halfGreen").each(function () {
