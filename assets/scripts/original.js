@@ -118,7 +118,10 @@ document.body.append(progressCircle);
       const scroll = $(window).scrollTop();
       const height = $(document).height() - $(window).height();
       const progress = pathLength - (scroll * pathLength) / height;
-      const percentageNumber = parseInt((scroll * 100) / height);
+      let percentageNumber = parseInt((scroll * 100) / height);
+      if (percentageNumber < 0) {
+        percentageNumber = 0;
+      }
       percentagePTag.textContent = `${percentageNumber}%`;
       if (percentageNumber < 10) {
         percentagePTag.style.right = "12px";
@@ -378,3 +381,5 @@ document.body.append(progressCircle);
   }
 })();
 
+// errors may occur 
+// error handling needed
