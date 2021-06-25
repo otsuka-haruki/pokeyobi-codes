@@ -4,30 +4,14 @@
 
 // marker animation
 (function () {
-  const windowHeight = window.innerHeight;
-  const targetHeight = windowHeight * 0.65;
-
-  $(window).scroll(function () {
-    $(".marker-halfGreen").each(function () {
-      const position = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowHeight = $(window).height();
-      if (scroll > position - windowHeight + +targetHeight) {
-        $(this).addClass("is-active");
-      }
-    });
-  });
-
-  $(window).scroll(function () {
-    $(".marker-halfRed").each(function () {
-      const position = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowHeight = $(window).height();
-      if (scroll > position - windowHeight + +targetHeight) {
-        $(this).addClass("is-active");
-      }
-    });
-  });
+  const markerGreen = document.getElementsByClassName('marker-halfGreen');
+  for (const element of markerGreen) {
+    element.classList.add('is-active');
+  }
+  const markerRed = document.getElementsByClassName('marker-halfRed');
+  for (const element of markerRed) {
+    element.classList.add('is-active');
+  }
 })();
 
 // user browser version note
@@ -183,8 +167,14 @@ document.body.append(progressCircle);
 // pageview text color and plural form
 (function () {
   const pageViewLi = $(".dateList-main .icon-eye").text();
-  const pageViewNumber = parseInt(pageViewLi);
+  let pageViewNumber = parseInt(pageViewLi);
   if (pageViewNumber >= 1000) {
+    if (pageViewNumber >= 10000) {
+      const thousands = parseInt(pageViewNumber / 1000);
+      let rest = pageViewNumber - thousands * 1000;
+      rest = ('00' + rest).slice(-3);
+      pageViewNumber = `${thousands},${rest}`;
+    }
     $(".dateList-main .icon-eye").css("color", "#ff1744");
     $(".dateList-main .icon-eye").html(`<i class="fas fa-signal"></i>${pageViewNumber}views`);
   } else {
@@ -381,5 +371,29 @@ document.body.append(progressCircle);
   }
 })();
 
-// errors may occur 
+// remove invalid amazon affiliate links
+(function () {
+  const imageElements = document.getElementsByTagName('img');
+  for (let i = 0; i < imageElements.length; i++) {
+    if (imageElements[i].src.includes('ir-jp.amazon')) {
+      imageElements[i].remove();
+    }
+  }
+})();
+
+// remove text-decoration attribute from span tag that has a tag with amazon link
+(function () {
+  const spanTags = document.getElementsByTagName('span');
+  for (const element of spanTags) {
+    const children = element.children;
+    for (const child of children) {
+      const hrefAttribute = String(child.getAttribute('href'));
+      if (hrefAttribute.includes('amzn.to')) {
+        element.removeAttribute('style');
+      }
+    }
+  }
+})();
+
+// errors can occur 
 // error handling needed
