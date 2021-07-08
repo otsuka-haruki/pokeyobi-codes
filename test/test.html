@@ -1,199 +1,37 @@
-<style>
-    .sim-table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        background-color: #fff;
-        margin-bottom: 15px;
-        width: 100%;
-    }
+<!DOCTYPE html>
+<html>
 
-    .sim-table th,
-    td {
-        padding: 8px;
-        border: 1px solid #efefef;
-        text-align: center;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="luxy.js" charset="utf-8"></script>
+    <title>Test document</title>
+</head>
 
-    th {
-        background-color: rgb(249, 217, 219);
-    }
+<body>
+    <div id="luxy">
+        <div class="cover">
+            <p>Welcome!</p>
+        </div>
+        <div class="cover">
+            <p>To</p>
+        </div>
+        <div class="cover">
+            <p>pokeyobi.jp</p>
+        </div>
+    </div>
+    <script charset="utf-8">
+        luxy.init();
+        const targetChildren = document.body.children;
+        console.log(targetChildren);
+    </script>
+</body>
 
-    .sim-table caption {
-        text-align: left;
-        padding: 0.5rem 1rem;
-        background-color: #f73534;
-        color: #fff;
-        font-weight: bolder;
-    }
-
-    .scroll {
-        overflow: auto;
-        white-space: nowrap;
-    }
-
-    .scroll::-webkit-scrollbar {
-        height: 5px;
-    }
-
-    .scroll::-webkit-scrollbar-track {
-        background-color: #f1f1f1;
-    }
-
-    .scroll::-webkit-scrollbar-thumb {
-        background: #bcbcbc;
-    }
-
-    .sim-date {
-        font-size: 11px;
-    }
-
-    .marker_pink_hoso {
-        background: linear-gradient(transparent 60%, #ffdfef 0%);
-        line-height: 25px;
-        font-size: 16px;
-        font-weight: bolder;
-    }
-</style>
-<div class="scroll">
-    <table class="sim-table">
-        <caption>BIGLOBEモバイル「新料金プラン」</caption>
-        <tbody>
-            <tr>
-                <th>通信容量</th>
-                <th>月額料金<br>(税込)</th>
-                <th>光回線セット割/<br>家族割適用で<br>(税込)</th>
-            </tr>
-            <tr>
-                <td>1GB</td>
-                <td>1,078円</td>
-                <td>858円</td>
-            </tr>
-            <tr>
-                <td>3GB</td>
-                <td>1,320円</td>
-                <td>1,100円</td>
-            </tr>
-            <tr>
-                <td>6GB</td>
-                <td>1,870円</td>
-                <td>1,650円</td>
-            </tr>
-            <tr>
-                <td>12GB</td>
-                <td>3,740円</td>
-                <td>3,520円</td>
-            </tr>
-            <tr>
-                <td>20GB</td>
-                <td>5,720円</td>
-                <td>5,500円</td>
-            </tr>
-            <tr>
-                <td>30GB</td>
-                <td>8,195円</td>
-                <td>7,975円</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<p><span class="sim-date">※表は横にスクロール可能 <br>※この情報は4月16日時点のものです。<br><br></span></p>
-
-<style>
-    .sim-table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        background-color: #fff;
-        margin-bottom: 15px;
-        width: 100%;
-    }
-
-    .sim-table th,
-    td {
-        padding: 8px;
-        border: 1px solid #efefef;
-        text-align: center;
-    }
-
-    th {
-        background-color: rgb(249, 217, 219);
-    }
-
-    .sim-table caption {
-        text-align: left;
-        padding: 0.5rem 1rem;
-        background-color: #f73534;
-        color: #fff;
-        font-weight: bolder;
-    }
-
-    .scroll {
-        overflow: auto;
-        white-space: nowrap;
-    }
-
-    .scroll::-webkit-scrollbar {
-        height: 5px;
-    }
-
-    .scroll::-webkit-scrollbar-track {
-        background-color: #f1f1f1;
-    }
-
-    .scroll::-webkit-scrollbar-thumb {
-        background: #bcbcbc;
-    }
-
-    .sim-date {
-        font-size: 11px;
-    }
-
-    .marker_pink_hoso {
-        background: linear-gradient(transparent 60%, #ffdfef 0%);
-        line-height: 25px;
-        font-size: 16px;
-        font-weight: bolder;
-    }
-</style>
-<div class="scroll">
-    <table class="sim-table">
-        <caption>BIGLOBEモバイル 音声通話SIM「新料金プラン」</caption>
-        <tbody>
-            <tr>
-                <th>通信容量</th>
-                <th>月額料金<br>(税込)</th>
-                <th>光回線セット割/<br>家族割適用で<br>(税込)</th>
-            </tr>
-            <tr>
-                <td>1GB</td>
-                <td>1,078円</td>
-                <td>858円</td>
-            </tr>
-            <tr>
-                <td>3GB</td>
-                <td>1,320円</td>
-                <td>1,100円</td>
-            </tr>
-            <tr>
-                <td>6GB</td>
-                <td>1,870円</td>
-                <td>1,650円</td>
-            </tr>
-            <tr>
-                <td>12GB</td>
-                <td>3,740円</td>
-                <td>3,520円</td>
-            </tr>
-            <tr>
-                <td>20GB</td>
-                <td>5,720円</td>
-                <td>5,500円</td>
-            </tr>
-            <tr>
-                <td>30GB</td>
-                <td>8,195円</td>
-                <td>7,975円</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<p><span class="sim-date">※表は横にスクロール可能 <br>※この情報は4月16日時点のものです。<br><br></span></p>
+</html>

@@ -5,13 +5,20 @@
 // marker animation
 (function () {
   const markerGreen = document.getElementsByClassName('marker-halfGreen');
-  for (const element of markerGreen) {
-    element.classList.add('is-active');
-  }
   const markerRed = document.getElementsByClassName('marker-halfRed');
-  for (const element of markerRed) {
-    element.classList.add('is-active');
-  }
+  let hasScrolled = false;
+  window.addEventListener('scroll', () => {
+    if (hasScrolled == true) {
+      return;
+    }
+    for (const element of markerGreen) {
+      element.classList.add('is-active');
+    }
+    for (const element of markerRed) {
+      element.classList.add('is-active');
+    }
+    hasScrolled == true;
+  });
 })();
 
 // user browser version note
@@ -105,6 +112,8 @@ document.body.append(progressCircle);
       let percentageNumber = parseInt((scroll * 100) / height);
       if (percentageNumber < 0) {
         percentageNumber = 0;
+      } else if (percentageNumber > 100) {
+        percentageNumber = 100;
       }
       percentagePTag.textContent = `${percentageNumber}%`;
       if (percentageNumber < 10) {
@@ -201,18 +210,43 @@ document.body.append(progressCircle);
       paperPlaneIcon.classList.add("paper-plane-fly");
     });
 
-    // contact form prevent sending mail from certain addresses
+    // block spam mail
     const textInputs = document
       .getElementsByClassName("contactTable")[0]
       .querySelector("tbody")
       .querySelectorAll("tr");
     const mailAddressInput = textInputs[1].querySelector("td input");
+    const contactContentInput = textInputs[3].querySelector("td textarea");
     formButton.addEventListener("click", (event) => {
       const mailAddress = mailAddressInput.value;
       if (mailAddress.includes("@rediffmail")) {
         event.preventDefault();
         alert("このメールアドレスからはメールを送信できません。");
         location.reload();
+      }
+      let contactContent = contactContentInput.value;
+      const wordsBlacklist = ['営業', '仮想通貨', '助成金', '未公開', 'ビジネスパートナー', '集客', 'ノウハウ', '先着', '銀行口座', 'チームD', '登録', 'check', 'before'];
+      let hasBlacklistWord = false;
+      wordsBlacklist.forEach(word => {
+        if (contactContent.includes(word)) {
+          hasBlacklistWord = true;
+        }
+      });
+      if (contactContent.includes("Don't buy traffic") || hasBlacklistWord) {
+        event.preventDefault();
+        let sentCount = localStorage.getItem('sent-count');
+        if (sentCount == null) {
+          sentCount = 0;
+        }
+        sentCount++;
+        localStorage.setItem('sent-count', sentCount);
+        const coverDivTag = document.createElement('div');
+        coverDivTag.innerHTML = `
+          <div class="lds-hourglass"></div>
+          <p class="contact-form-loading-message">Please wait...</p>
+        `;
+        coverDivTag.classList.add('contact-form-cover');
+        document.body.append(coverDivTag);
       }
     });
 
